@@ -133,7 +133,13 @@ export default function App() {
           origen: origen
         })
       });
-      const json = await res.json();
+      const text = await res.text();
+      let json;
+      try {
+        json = JSON.parse(text);
+      } catch (err) {
+        throw new Error(`Error del servidor: ${res.status} ${res.statusText}`);
+      }
       if (json.error) {
         setError(json.error);
       } else {

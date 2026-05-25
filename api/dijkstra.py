@@ -6,7 +6,7 @@ class Grafo:
 
     def __init__(self, primero=None):
         self._grafo = {}
-        self._primero = primeiro
+        self._primero = primero
         if primero:
             self._grafo[primero] = {}
 

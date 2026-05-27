@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { Network, Plus, Trash2, Play, Pause, ChevronLeft, ChevronRight, FastForward, Rewind } from 'lucide-react';
+import { Network, Plus, Trash2, Play, Pause, ChevronLeft, ChevronRight, FastForward, Rewind, Github } from 'lucide-react';
 import GraphViz from './components/GraphViz';
 import { Edge, DijkstraResponse, TraceStep, TraceUpdate, ResultRow } from './types';
 
@@ -190,8 +190,19 @@ export default function App() {
       <div className="w-full max-w-[1500px] flex flex-col border-0 lg:border-8 border-black lg:shadow-2xl bg-white xl:h-[95vh] lg:min-h-[850px] lg:overflow-hidden">
         
         {/* Header */}
-        <header className="p-3 md:p-6 border-b-4 border-black flex flex-col sm:flex-row sm:justify-between sm:items-baseline bg-yellow-400 shrink-0">
-          <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-black tracking-tighter leading-none uppercase">RUTAS</h1>
+        <header className="p-3 md:p-6 border-b-4 border-black flex flex-col sm:flex-row sm:justify-between sm:items-center bg-yellow-400 shrink-0 gap-3">
+          <div className="flex items-center gap-4">
+            <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-black tracking-tighter leading-none uppercase">RUTAS</h1>
+            <a 
+              href="https://github.com/I0-oX/rutas-dijkstra" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 bg-black text-white px-3 py-1.5 text-xs font-black uppercase tracking-widest border-2 border-black hover:bg-white hover:text-black transition-all rounded-none shadow-[2px_2px_0px_#000] hover:shadow-none translate-y-[-1px] active:translate-y-[1px]"
+            >
+              <Github className="w-4 h-4" />
+              <span>GitHub</span>
+            </a>
+          </div>
           <div className="text-left sm:text-right uppercase font-bold text-[10px] sm:text-xs md:text-sm lg:text-base tracking-widest leading-none mt-1 sm:mt-0">
             Algoritmo de Dijkstra<br/>Visualización Paso a Paso
           </div>

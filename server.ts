@@ -18,7 +18,7 @@ async function startServer() {
     }
     
     return new Promise<Response>((resolve) => {
-      const pythonProcess = spawn("python3", ["dijkstra_api.py"]);
+      const pythonProcess = spawn("python3", ["api/dijkstra.py"]);
       
       let outputData = "";
       let errorData = "";

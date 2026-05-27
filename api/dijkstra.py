@@ -177,3 +177,68 @@ class handler(BaseHTTPRequestHandler):
             self.send_header('Access-Control-Allow-Origin', '*')
             self.end_headers()
             self.wfile.write(json.dumps({"error": f"Algorithm runtime failure: {str(e)}"}).encode('utf-8'))
+
+
+def run_cli():
+    import sys
+    input_data = sys.stdin.read()
+    if not input_data:
+        return
+    try:
+        data = json.loads(input_data)
+    except Exception as e:
+        print(json.dumps({"error": f"Invalid input JSON: {str(e)}"}))
+        return
+    
+    g = Grafo()
+    for origen, destino, peso in data.get("aristas", []):
+        g.agregar_aristas(origen, destino, float(peso))
+    
+    origen = data.get("origen")
+    if not origen:
+        origen = list(g._grafo.keys())[0] if g._grafo else None
+    
+    if not origen:
+        print(json.dumps({"error": "No origin provided"}))
+        return
+        
+    try:
+        S, P, nombre, idx, t, origen_calc = g.dijkstra(origen)
+        
+        # Format trace and results
+        traza = []
+        for i, (x, updates) in enumerate(t, 1):
+            step_updates = []
+            for j, ant, nuevo in updates:
+                step_updates.append({
+                    "nodo": nombre[j],
+                    "ant": None if ant == Grafo.INF else ant,
+                    "nuevo": nuevo,
+                    "via": nombre[x]
+                })
+            traza.append({
+                "iteracion": i,
+                "vertice": nombre[x],
+                "distancia": S[x],
+                "updates": step_updates
+            })
+            
+        resultados = []
+        for i in range(1, len(nombre) + 1):
+            if S[i] != Grafo.INF: # Accessible only
+                resultados.append({
+                    "destino": nombre[i],
+                    "distancia": S[i],
+                    "camino": g._camino(P, i, nombre)
+                })
+            
+        print(json.dumps({
+            "origen": origen_calc,
+            "traza": traza,
+            "resultados": resultados
+        }))
+    except Exception as e:
+        print(json.dumps({"error": f"Algorithm runtime failure: {str(e)}"}))
+
+if __name__ == "__main__":
+    run_cli()

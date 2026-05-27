@@ -1,5 +1,5 @@
 {
-  "name": "Dijkstra Visualizer",
+  "name": "Rutas",
   "description": "Una aplicación full-stack para interactuar con grafos del algoritmo de Dijkstra y visualizar la traza de ejecución usando la API de Python.",
   "requestFramePermissions": []
 }

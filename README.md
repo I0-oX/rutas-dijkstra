@@ -42,7 +42,9 @@ El proyecto sigue una estructura híbrida optimizable tanto para ejecución en s
 
 ---
 
-## 🔍 ¿Por qué Hono? (Explicación Sencilla)
+## 🔍 ¿Por qué Hono? (Guía Completa)
+
+### Explicación Sencilla
 
 Imagina que tu aplicación necesita dos partes:
 1. **Frontend** (lo que ves en el navegador)
@@ -53,7 +55,7 @@ Imagina que tu aplicación necesita dos partes:
 - Las envía al backend (Python en este proyecto, pero podría ser TypeScript)
 - Devuelve la respuesta al navegador
 
-### ¿Por qué lo usamos?
+**¿Por qué lo usamos?**
 - 🪶 **Ligero**: Ocupa muy poco (~14KB), no ralentiza tu app
 - 🚀 **Rápido**: Responde en milisegundos
 - 🔄 **Versátil**: Funciona en Vercel, Cloudflare, Node.js, etc.
@@ -63,51 +65,11 @@ Imagina que tu aplicación necesita dos partes:
 
 ---
 
-## ☁️ Hono con Vercel y Cloudflare (Explicación Sencilla)
-
-### El Problema
-Tu algoritmo está en **Python**, pero necesitas desplegarlo en internet. Aquí es donde entran Vercel y Cloudflare:
-
-> ⚠️ **Aquí está el problema principal**: Si tuvieras el algoritmo en TypeScript/JavaScript, podrías usar **cualquiera** de las dos plataformas. Al estar en Python, estás limitado solo a Vercel.
-
-### 🟢 Vercel (Donde está este proyecto)
-- **Qué hace**: Ejecuta tu código Python en servidores bajo demanda
-- **Cómo ayuda Hono**: Actúa como intermediario entre el usuario y Python
-- **Ventaja**: Soporta Python nativamente ✅
-- **Desventaja**: Te obliga a usar solo Vercel, no tienes opción de moverte ❌
-- **Flujo simple**:
-  ```
-  Usuario → Hono (en Vercel) → Python → Resultado → Usuario
-  ```
-
-### 🔵 Cloudflare Workers (Alternativa NO disponible aquí)
-- **Qué hace**: Ejecuta código JavaScript cerca del usuario (en el "edge")
-- **Limitación**: NO soporta Python directamente ❌
-- **Cuándo usarlo**: Si tu backend fuera solo JavaScript/TypeScript ✅
-- **Por qué es mejor**: Más rápido, más barato, más ubicuo (275+ ciudades)
-
-> 💡 **Lección importante**: Este proyecto **no puede** usar Cloudflare Workers por culpa de Python. Si estuviera en TypeScript, tendrías libertad total para elegir la mejor plataforma para cada caso.
-
-### ¿En qué se diferencian?
-
-| Aspecto | Vercel | Cloudflare |
-|---------|--------|------------|
-| **Soporta Python** | ✅ Sí | ❌ No |
-| **Velocidad** | Rápida | Más rápida (edge) |
-| **Ideal para** | Backend con Python | APIs ligeras en JS/TS |
-| **Precio** | Gratis hasta cierto límite | Gratis más generoso |
-| **Ubicuidad** | ~100 regiones | 275+ ciudades globally |
-| **Flexibilidad** | Limitado a Vercel | Cualquier edge compatible |
-
-> 💡 **Conclusión crítica**: Usamos **Vercel + Hono** porque **necesitamos** ejecutar Python, no porque sea la mejor opción. Si el algoritmo estuviera en JavaScript/TypeScript, **Cloudflare sería superior** en velocidad, costo y portabilidad. Esta es una limitación autoimpuesta por la elección de Python.
-
----
-
-## 🔍 ¿Por qué Hono? (Explicación Técnica Detallada)
+### Explicación Técnica Detallada
 
 **Hono** es un framework web moderno, ultraligero y rápido diseñado para funcionar en múltiples entornos de ejecución (runtimes). Se eligió para este proyecto por las siguientes razones:
 
-### ✅ Ventajas Clave de Hono
+#### ✅ Ventajas Clave de Hono
 
 1. **Ultraligero y Rápido**: Hono tiene una huella mínima (~14KB) y está optimizado para ofrecer un rendimiento excepcional, incluso en entornos con recursos limitados.
 
@@ -125,34 +87,76 @@ Tu algoritmo está en **Python**, pero necesitas desplegarlo en internet. Aquí 
 
 ---
 
-## ☁️ Hono con Vercel y Cloudflare (Explicación Técnica Detallada)
+## ☁️ Hono con Vercel y Cloudflare (Guía Completa)
 
-### 🟢 Despliegue en Vercel
+### Explicación Sencilla
+
+#### El Problema
+Tu algoritmo está en **Python**, pero necesitas desplegarlo en internet. Aquí es donde entran Vercel y Cloudflare:
+
+> ⚠️ **Aquí está el problema principal**: Si tuvieras el algoritmo en TypeScript/JavaScript, podrías usar **cualquiera** de las dos plataformas. Al estar en Python, estás limitado solo a Vercel.
+
+#### 🟢 Vercel (Donde está este proyecto)
+- **Qué hace**: Ejecuta tu código Python en servidores bajo demanda
+- **Cómo ayuda Hono**: Actúa como intermediario entre el usuario y Python
+- **Ventaja**: Soporta Python nativamente ✅
+- **Desventaja**: Te obliga a usar solo Vercel, no tienes opción de moverte ❌
+- **Flujo simple**:
+  ```
+  Usuario → Hono (en Vercel) → Python → Resultado → Usuario
+  ```
+
+#### 🔵 Cloudflare Workers (Alternativa NO disponible aquí)
+- **Qué hace**: Ejecuta código JavaScript cerca del usuario (en el "edge")
+- **Limitación**: NO soporta Python directamente ❌
+- **Cuándo usarlo**: Si tu backend fuera solo JavaScript/TypeScript ✅
+- **Por qué es mejor**: Más rápido, más barato, más ubicuo (275+ ciudades)
+
+> 💡 **Lección importante**: Este proyecto **no puede** usar Cloudflare Workers por culpa de Python. Si estuviera en TypeScript, tendrías libertad total para elegir la mejor plataforma para cada caso.
+
+#### Comparativa Rápida
+
+| Aspecto | Vercel | Cloudflare |
+|---------|--------|------------|
+| **Soporta Python** | ✅ Sí | ❌ No |
+| **Velocidad** | Rápida | Más rápida (edge) |
+| **Ideal para** | Backend con Python | APIs ligeras en JS/TS |
+| **Precio** | Gratis hasta cierto límite | Gratis más generoso |
+| **Ubicuidad** | ~100 regiones | 275+ ciudades globally |
+| **Flexibilidad** | Limitado a Vercel | Cualquier edge compatible |
+
+> 💡 **Conclusión crítica**: Usamos **Vercel + Hono** porque **necesitamos** ejecutar Python, no porque sea la mejor opción. Si el algoritmo estuviera en JavaScript/TypeScript, **Cloudflare sería superior** en velocidad, costo y portabilidad. Esta es una limitación autoimpuesta por la elección de Python.
+
+---
+
+### Explicación Técnica Detallada
+
+#### 🟢 Despliegue en Vercel
 
 Vercel es una plataforma serverless que ejecuta funciones bajo demanda. Hono se integra perfectamente mediante **Vercel Edge Functions** o **Serverless Functions**:
 
-#### Cómo Funciona:
+##### Cómo Funciona:
 1. **Rutas Automáticas**: Cada archivo en la carpeta `/api` se convierte automáticamente en un endpoint serverless.
 2. **Adaptador de Hono**: Hono detecta el entorno de Vercel y adapta su fetch handler para funcionar con el modelo de funciones serverless.
 3. **Cold Start Mínimo**: Gracias a su tamaño reducido, Hono tiene tiempos de inicialización (cold start) muy bajos, crucial para funciones serverless.
 4. **Configuración Simple**: Con `vercel.json` defines reescrituras de rutas para que todo el tráfico SPA redirija al `index.html`, mientras que las rutas `/api/*` son manejadas por Hono.
 
-#### Ejemplo de Flujo en Vercel:
+##### Ejemplo de Flujo en Vercel:
 ```
 Usuario → Vercel Edge → /api/dijkstra (Hono) → Python Script → Respuesta JSON
 ```
 
-### 🔵 Despliegue en Cloudflare Workers
+#### 🔵 Despliegue en Cloudflare Workers
 
 Cloudflare Workers ejecuta código en el **edge** (borde de la red), cerca del usuario final. Hono fue diseñado pensando en esta arquitectura:
 
-#### Cómo Funciona:
+##### Cómo Funciona:
 1. **Runtime Compatible**: Hono usa Web Standards API (Request/Response) que Cloudflare Workers soporta nativamente.
 2. **Ejecución en el Edge**: Tu aplicación se distribuye globalmente en más de 275 centros de datos de Cloudflare.
 3. **Sin Servidores Tradicionales**: No hay que gestionar instancias; Cloudflare escala automáticamente.
 4. **Costo Eficiente**: Los Workers tienen un generoso plan gratuito y cobran solo por tiempo de CPU real usado.
 
-#### Configuración Típica para Cloudflare:
+##### Configuración Típica para Cloudflare:
 ```ts
 // worker.ts
 import { Hono } from 'hono';
@@ -163,7 +167,7 @@ app.get('/', (c) => c.text('Hello from Cloudflare!'));
 export default app;
 ```
 
-### 📊 Comparativa Técnica Completa
+#### 📊 Comparativa Técnica Completa
 
 | Característica | Vercel | Cloudflare Workers |
 |---------------|--------|-------------------|
